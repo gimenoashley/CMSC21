@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <ctype.h> /* toupper, isalpha */
 
+//scans the inputs
 void scan_word(int *occurrences[26]){
     char c;
     while ((c=getchar()) != '\n'){
@@ -11,10 +12,10 @@ void scan_word(int *occurrences[26]){
     }
 }
 
+//changes into pointers then compares the two arrays
 bool is_anagram(int *occurrences1[26], int *occurrences2[26]){
     int i = 0, same=1;
     for (i; i < 26; i++){
-        //Change it to compare two arrays.
         if (occurrences1[i] != occurrences2[i]) {
             same=0;
             break;
