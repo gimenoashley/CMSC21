@@ -2,16 +2,16 @@
 #include <stdbool.h>
 #include <ctype.h> /* toupper, isalpha */
 
-void scan_word(int occurrences[26]){
+void scan_word(int *occurrences[26]){
     char c;
     while ((c=getchar()) != '\n'){
         if (isalpha(c)){
-            occurrences[toupper(c) - 'A']++;
+            *occurrences[toupper(c) - 'A']++;
         }
     }
 }
 
-bool is_anagram(int occurrences1[26], int occurrences2[26]){
+bool is_anagram(int *occurrences1[26], int *occurrences2[26]){
     int i = 0, same=1;
     for (i; i < 26; i++){
         //Change it to compare two arrays.
@@ -25,16 +25,16 @@ bool is_anagram(int occurrences1[26], int occurrences2[26]){
 
 int main(void) {
 
-    int i, same = 1, occurrences1[26] = {0}, occurrences2[26] = {0};
+    int i, same = 1, *occurrences1[26] = {0}, *occurrences2[26] = {0};
     char c;
 
     printf("Enter first word: ");
-    scan_word(occurrences1);
+    scan_word(&occurrences1);
     printf("Enter second word: ");
-    scan_word(occurrences2);
+    scan_word(&occurrences2);
 
 
-    same = is_anagram(occurrences1, occurrences2);
+    same = is_anagram(&occurrences1, &occurrences2);
     if (same) {
         printf("The words are anagrams.\n");
         return 0;
